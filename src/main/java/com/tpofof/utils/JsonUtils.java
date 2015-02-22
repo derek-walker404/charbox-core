@@ -158,6 +158,21 @@ public final class JsonUtils {
 		return null;
 	}
 	
+	public static ObjectNode parseObject(String json) {
+		if (json == null) {
+			throw new IllegalArgumentException("Json content cannot be null");
+		}
+		try {
+			JsonNode node = mapper.readTree(json);
+			return node.isArray() ? null : (ObjectNode)node;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static ObjectNode getObjectNode() {
 		return mapper.createObjectNode();
 	}
