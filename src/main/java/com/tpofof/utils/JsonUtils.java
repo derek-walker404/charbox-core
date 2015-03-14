@@ -40,6 +40,25 @@ public final class JsonUtils {
 		return null;
 	}
 	
+	public static JsonNode fromJson(File file) {
+		if (file == null) {
+			throw new IllegalArgumentException("Json file cannot be null.");
+		}
+		if (!file.exists()) {
+			throw new IllegalArgumentException("Json file must exist.");
+		}
+		try {
+			return mapper.readValue(file, JsonNode.class);
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static <ModelT> ModelT fromJson(String json, Class<ModelT> modelType) {
 		if (json == null) {
 			throw new IllegalArgumentException("Json content cannot be null");
