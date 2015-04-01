@@ -1,4 +1,4 @@
-package com.tpofof.utils;
+package co.charbox.core.utils;
 
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.ConfigurationException;

@@ -1,4 +1,4 @@
-package com.tpofof.utils;
+package co.charbox.core.utils;
 
 import java.io.File;
 import java.io.IOException;
