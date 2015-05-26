@@ -37,12 +37,12 @@ public class MaxMindService {
 	
 	@Autowired
 	public MaxMindService(Config config) {
-		USER_ID = config.getInt("location.api.userId");
-		this.KEY = config.getString("location.api.key");
+		USER_ID = config.getInt("location.api.userId", 0);
+		this.KEY = config.getString("location.api.key", "");
 		this.client = new WebServiceClient.Builder(USER_ID, KEY).build();
 		this.cache = CacheBuilder.newBuilder()
-				.expireAfterAccess(config.getLong("location.api.cache.access"), TimeUnit.MINUTES)
-				.expireAfterWrite(config.getLong("location.api.cache.write"), TimeUnit.MINUTES)
+				.expireAfterAccess(config.getLong("location.api.cache.access", 60), TimeUnit.MINUTES)
+				.expireAfterWrite(config.getLong("location.api.cache.write", 4320), TimeUnit.MINUTES)
 				.recordStats()
 				.build();
 	}

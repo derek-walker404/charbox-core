@@ -23,9 +23,13 @@ public final class LocationProvider {
 	
 	@Autowired
 	public LocationProvider(Config config) {
-		File databaseFile = new File(config.getString("location.db.filename"));
+		File databaseFile = new File(config.getString("location.db.filename", ""));
 		try {
-			reader = new DatabaseReader.Builder(databaseFile).build();
+			if (databaseFile.exists()) {
+				reader = new DatabaseReader.Builder(databaseFile).build();
+			} else {
+				System.err.println("location.db.filename Does NOT exist!");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
