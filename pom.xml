@@ -6,15 +6,9 @@
 	<version>0.1.0-SNAPSHOT</version>
 	<name>Charbox Core</name>
 	<properties>
-		<tpofof-core.version>0.0.3-SNAPSHOT</tpofof-core.version>
-		<charbox-domain.version>0.1.0-SNAPSHOT</charbox-domain.version>
+		<charbox-domain.version>0.1.1-SNAPSHOT</charbox-domain.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>com.tpofof</groupId>
-			<artifactId>tpofof-core</artifactId>
-			<version>${tpofof-core.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>co.charbox</groupId>
 			<artifactId>domain</artifactId>

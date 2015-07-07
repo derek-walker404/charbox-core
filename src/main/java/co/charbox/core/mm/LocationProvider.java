@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.charbox.domain.model.MyLocation;
+import co.charbox.domain.model.mm.SimpleLocationModel;
 
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
@@ -35,16 +35,16 @@ public final class LocationProvider {
 		}
 	}
 	
-	public MyLocation getLocation(String ip) {
-		MyLocation loc = MyLocation.builder()
+	public SimpleLocationModel getLocation(String ip) {
+		SimpleLocationModel loc = SimpleLocationModel.builder()
 				.ip(ip)
 				.build();
 		try {
 			InetAddress ipAddress = InetAddress.getByName(ip);
 			CityResponse cityResponse = reader.city(ipAddress);
 			Location location = cityResponse.getLocation();
-			loc.setLat(location.getLatitude())
-					.setLon(location.getLongitude());
+			loc.setLat(location.getLatitude());
+			loc.setLon(location.getLongitude());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
